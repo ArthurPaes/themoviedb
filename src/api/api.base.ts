@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
 
 export enum HTTP_HEADER_TYPE {
@@ -26,17 +25,6 @@ abstract class BaseApi {
     });
   }
 
-  /**
-   * makeRequest
-   *
-   * Realiza uma requisição para a API e retorna os dados.
-   * @param {'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'} method - Método HTTP.
-   * @param {string} url - Url da requisição.
-   * @param {IHttpHeaders} [headers] - Headers HTTP.
-   * @param {Record<string, any>} [data] - Dados para enviar a API.
-   * @param {AxiosRequestConfig} [config] - AxiosRequestConfig - Configurações axios extras caso necessário.
-   * @returns Dados da requisição.
-   */
   protected async makeRequest<T>(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
     url: string,
@@ -67,16 +55,8 @@ abstract class BaseApi {
     }
   }
 
-  /**
-   * __handleRequestErrors
-   *
-   * Trata os erros da função makeRequest
-   *
-   * @param { any } error
-   */
   protected async __handleRequestErrors(error: any): Promise<void> {
     console.error('error: ', error);
-    //TODO: Handle Errors
   }
 }
 
@@ -85,13 +65,6 @@ export class Api extends BaseApi {
     super(baseURL);
   }
 
-  /**
-   * __setHeaders
-   *
-   * Monta os headers para a requisição HTTP
-   *
-   * @param { string } mode Modo do Header
-   */
   private async __setHeaders(
     mode?: HTTP_HEADER_TYPE,
     customOptions?: any
@@ -101,7 +74,7 @@ export class Api extends BaseApi {
     if (mode === HTTP_HEADER_TYPE.JSON || !mode) {
       customHeaders = {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${await localStorage.getItem('@UserToken')}`,
+        authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
         ...customOptions,
       };
     } else if (mode === HTTP_HEADER_TYPE.X_WWW_FORM_URLENCONDED) {
@@ -123,14 +96,6 @@ export class Api extends BaseApi {
     return customHeaders;
   }
 
-  /**
-   * __setUrlParams
-   *
-   * Monta a URL com os parâmetros recebidos no body da requisição
-   *
-   * @param { string } url
-   * @param { Record<string, any> } data
-   */
   private __setUrlParams(url: string, data: Record<string, any>): string {
     let conector: string = '?';
 
@@ -151,15 +116,6 @@ export class Api extends BaseApi {
     return url;
   }
 
-  /**
-   * Realiza uma requisição GET.
-   *
-   * @param {string} url - Url para realizar a requisição.
-   * @param {Record<string, any>} data - Dados para requisição.
-   * @param {HTTP_HEADER_TYPE} [headerType] - Tipo do header utilizado na requisição
-   * @param {AxiosRequestConfig} [config] - configurações extras para a requisição
-   * @returns Uma promise.
-   */
   async get<T>(
     url: string,
     data?: Record<string, any>,
@@ -175,15 +131,6 @@ export class Api extends BaseApi {
     );
   }
 
-  /**
-   * Realiza uma requisição POST.
-   *
-   * @param {string} url - Url para realizar a requisição.
-   * @param {Record<string, any>} data - Dados para requisição.
-   * @param {HTTP_HEADER_TYPE} [headerType] - Tipo do header utilizado na requisição
-   * @param {AxiosRequestConfig} [config] - configurações extras para a requisição
-   * @returns Uma promise.
-   */
   async post<T>(
     url: string,
     data?: Record<string, any>,
@@ -199,15 +146,6 @@ export class Api extends BaseApi {
     );
   }
 
-  /**
-   * Realiza uma requisição PUT.
-   *
-   * @param {string} url - Url para realizar a requisição.
-   * @param {Record<string, any>} data - Dados para requisição.
-   * @param {HTTP_HEADER_TYPE} [headerType] - Tipo do header utilizado na requisição
-   * @param {AxiosRequestConfig} [config] - configurações extras para a requisição
-   * @returns Uma promise.
-   */
   async put<T>(
     url: string,
     data?: Record<string, any>,
@@ -223,14 +161,6 @@ export class Api extends BaseApi {
     );
   }
 
-  /**
-   * Realiza uma requisição DELETE.
-   *
-   * @param {string} url - Url para realizar a requisição.
-   * @param {HTTP_HEADER_TYPE} [headerType] - Tipo do header utilizado na requisição
-   * @param {AxiosRequestConfig} [config] - configurações extras para a requisição
-   * @returns Uma promise.
-   */
   async delete<T>(
     url: string,
     headerType?: HTTP_HEADER_TYPE,
@@ -244,15 +174,6 @@ export class Api extends BaseApi {
     );
   }
 
-  /**
-   * Realiza uma requisição PATCH.
-   *
-   * @param {string} url - Url para realizar a requisição.
-   * @param {Record<string, any>} data - Dados para requisição.
-   * @param {HTTP_HEADER_TYPE} [headerType] - Tipo do header utilizado na requisição
-   * @param {AxiosRequestConfig} [config] - configurações extras para a requisição
-   * @returns Uma promise.
-   */
   async patch<T>(
     url: string,
     data?: Record<string, any>,
@@ -269,5 +190,4 @@ export class Api extends BaseApi {
   }
 }
 
-//TODO: Adicionar URL da api
-export default new Api('api_url');
+export default new Api(process.env.REACT_APP_API_URL || '');
