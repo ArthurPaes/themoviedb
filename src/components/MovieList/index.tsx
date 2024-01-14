@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { MoviesApi } from '../../api/app/movies.api';
 import Toggle from '../Toggle';
 import { IToggleProps } from '../Toggle/IToggleProps';
+import { getFullImageUrl } from '../../utils/utilFunctions';
 
 const MovieList: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -42,9 +43,7 @@ const MovieList: React.FC = () => {
               date={movie.release_date}
               title={movie.title}
               percentage={Number((movie.vote_average * 10).toFixed())}
-              thumbnailUrl={
-                process.env.REACT_APP_IMAGE_URL + '/w500' + movie.poster_path
-              }
+              thumbnailUrl={getFullImageUrl(movie.poster_path)}
             />
           </Link>
         ))}
