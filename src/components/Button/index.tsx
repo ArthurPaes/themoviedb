@@ -56,7 +56,7 @@ const Button: React.FC<IButtonProps> = ({
           lg: ['text-[24px]'],
         },
         disabled: {
-          true: ['opacity-50'],
+          true: ['opacity-50', 'pointer-events-none'],
         },
       },
       defaultVariants: {
@@ -70,6 +70,7 @@ const Button: React.FC<IButtonProps> = ({
 
   return (
     <button
+      data-testid="button"
       className={variants({
         variant,
         className,
