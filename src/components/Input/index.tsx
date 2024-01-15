@@ -2,24 +2,39 @@ import React, { ChangeEvent, useRef } from 'react';
 import { IInputProps } from './IInputProps';
 import Button from '../Button';
 
-const Input: React.FC<IInputProps> = ({ placeholder, onChange, button }) => {
+const Input: React.FC<IInputProps> = ({
+  value,
+  placeholder,
+  onChange,
+  button,
+}) => {
   const valueRef = useRef<string>('');
 
-  const onValueChanges = (event: ChangeEvent<HTMLInputElement>) => {
+  const onValueChanges = (event: ChangeEvent<HTMLInputElement>): void => {
     const value = event.currentTarget.value;
     valueRef.current = value;
     onChange?.(value);
   };
 
-  const buttonClick = () => {
+  const buttonClick = (): void => {
     button?.onClick();
   };
 
+  const handleKeyPress = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ): void => {
+    if (event.key === 'Enter') {
+      buttonClick();
+    }
+  };
+
   return (
-    <div className="relative w-full flex">
+    <div className="flex relative w-full">
       <input
+        onKeyDown={handleKeyPress}
+        value={value}
         onChange={onValueChanges}
-        className="w-full text-gray px-6 h-12 text-base rounded-full outline-none"
+        className="px-6 w-full h-12 text-base rounded-full outline-none text-gray"
         placeholder={placeholder}
       />
 
