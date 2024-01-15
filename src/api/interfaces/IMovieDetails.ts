@@ -26,7 +26,7 @@ export interface IMovieDetailsResponse {
   vote_count: 467;
 }
 
-interface IGenre {
+export interface IGenre {
   id: number;
   name: string;
 }
