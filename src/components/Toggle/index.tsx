@@ -2,7 +2,11 @@ import { cva } from 'class-variance-authority';
 import { IToggleProps } from './IToggleProps';
 import { useEffect, useState } from 'react';
 
-const Toggle: React.FC<IToggleProps> = ({ options, onChange, selected }) => {
+const Toggle = <Values,>({
+  options,
+  onChange,
+  selected,
+}: IToggleProps<Values>) => {
   const [optionSelected, setOptionSelected] = useState(selected);
   const [selectedButtonWidth, setSelectedButtonWidth] = useState(0);
   const [selectedButtonLeft, setSelectedButtonLeft] = useState(0);
@@ -10,7 +14,9 @@ const Toggle: React.FC<IToggleProps> = ({ options, onChange, selected }) => {
   useEffect(() => {
     setOptionSelected(selected);
 
-    saveSelectedButtonWidthAndLeft(selected);
+    if (selected) {
+      saveSelectedButtonWidthAndLeft(selected);
+    }
   }, [selected]);
 
   const textVariants = cva([], {
@@ -37,16 +43,17 @@ const Toggle: React.FC<IToggleProps> = ({ options, onChange, selected }) => {
     ) as HTMLButtonElement;
   };
 
-  const saveSelectedButtonWidthAndLeft = (selectedValue: string) => {
-    const button = getSelectedButton(selectedValue);
+  const saveSelectedButtonWidthAndLeft = (selectedValue: Values): void => {
+    const button = getSelectedButton(selectedValue as string);
 
     setSelectedButtonWidth(button.offsetWidth);
     setSelectedButtonLeft(button.offsetLeft);
   };
 
-  const change = (value: string) => {
+  const change = (value: Values): void => {
     setOptionSelected(value);
     saveSelectedButtonWidthAndLeft(value);
+    onChange?.(value);
   };
 
   return (
@@ -54,7 +61,7 @@ const Toggle: React.FC<IToggleProps> = ({ options, onChange, selected }) => {
       {options.map(option => (
         <button
           id={`toggle-${option.value}`}
-          key={option.value}
+          key={option.value as string}
           className="z-10 px-4 h-7 text-sm font-bold rounded-full"
           onClick={() => change(option.value)}>
           <span
@@ -71,10 +78,12 @@ const Toggle: React.FC<IToggleProps> = ({ options, onChange, selected }) => {
         </button>
       ))}
 
-      <div
-        className="absolute h-7 rounded-full duration-300 ease-in-out transition-left bg-dark-blue"
-        style={{ width: selectedButtonWidth, left: selectedButtonLeft }}
-      />
+      {selected && (
+        <div
+          className="absolute h-7 rounded-full duration-300 ease-in-out transition-left bg-dark-blue"
+          style={{ width: selectedButtonWidth, left: selectedButtonLeft }}
+        />
+      )}
     </div>
   );
 };

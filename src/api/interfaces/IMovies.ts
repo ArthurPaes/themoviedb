@@ -2,7 +2,7 @@ import { IPagination } from './IPagination';
 
 export type ListMovies = IPagination<IMovies[]>;
 
-interface IMovies {
+export interface IMovies {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];

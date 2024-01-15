@@ -1,12 +1,10 @@
-type toggleValue = string;
-
-interface ToggleOption {
+interface ToggleOption<Values> {
   label: string;
-  value: toggleValue;
+  value: Values;
 }
 
-export interface IToggleProps {
-  options: ToggleOption[];
-  onChange: (value: toggleValue) => void;
-  selected: toggleValue;
+export interface IToggleProps<Values> {
+  options: ToggleOption<Values>[];
+  onChange: (value: Values) => void;
+  selected: Values | undefined;
 }
