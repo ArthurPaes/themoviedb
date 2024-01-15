@@ -1,19 +1,6 @@
-import api, {
-  HTTP_HEADER_TYPE,
-  Api as BaseApi,
-  IHttpHeaders,
-} from './api.base';
+import { HTTP_HEADER_TYPE, Api as BaseApi, IHttpHeaders } from './api.base';
 
-jest.mock('axios', () => ({
-  create: jest.fn(() => ({
-    request: jest.fn(),
-    get: jest.fn(),
-    post: jest.fn(),
-    put: jest.fn(),
-    delete: jest.fn(),
-    patch: jest.fn(),
-  })),
-}));
+jest.mock('axios');
 
 describe('Api class', () => {
   afterEach(() => {
@@ -122,63 +109,4 @@ describe('Api class', () => {
       expect(result).toEqual(expectedHeaders);
     });
   });
-
-  //   describe('makeRequest function', () => {
-  //     const mockedAxios = axios as jest.Mocked<typeof axios>;
-
-  //     afterEach(() => {
-  //       jest.clearAllMocks();
-  //     });
-
-  //     // Add more test cases for other HTTP methods and scenarios
-
-  //     test('calls __handleRequestErrors on AxiosError', async () => {
-  //       const apiInstance = new BaseApi('https://example.com');
-  //       const error = {
-  //         isAxiosError: true,
-  //         response: { data: 'error data' },
-  //       } as AxiosError;
-
-  //       jest.spyOn(api, 'get').mockRejectedValueOnce(error);
-  //       const handleRequestErrorsSpy = jest.spyOn(apiInstance as any, '__handleRequestErrors');
-
-  //         await apiInstance.get('example')
-  //         expect(handleRequestErrorsSpy).toHaveBeenCalledWith('ADAD');
-  //     });
-  //   });
-
-  //     test('get method makes a successful GET request', async () => {
-  //       jest.spyOn(api, 'get').mockRejectedValueOnce(new Error("error"));
-
-  //       const result = await api.get('/example');
-
-  //       expect(api.get).rejects.toThrow('error');
-  //     });
-
-  //   test('post method makes a successful POST request', async () => {
-  //     const mockResponse = { data: 'mocked data' };
-  //     mockedAxios.request.mockResolvedValueOnce(mockResponse);
-
-  //     const result = await Api.post('/example', { key: 'value' });
-
-  //     expect(mockedAxios.request).toHaveBeenCalledWith({
-  //       method: 'POST',
-  //       url: '/example',
-  //       headers: expect.any(Object),
-  //       data: { key: 'value' },
-  //     });
-  //     expect(result).toEqual(mockResponse.data);
-  //   });
-
-  //   // Add more test cases for other HTTP methods and scenarios
-
-  //   test('handles error in case of a failed request', async () => {
-  //     const errorMessage = 'Request failed';
-  //     const error = new Error(errorMessage);
-  //     mockedAxios.request.mockRejectedValueOnce(error);
-
-  //     await expect(Api.get('/example')).rejects.toThrow(errorMessage);
-  //   });
-
-  // Add more test cases as needed
 });

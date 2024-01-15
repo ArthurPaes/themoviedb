@@ -1,4 +1,4 @@
-//@ts-expect-error dadas
+//@ts-expect-error svg not typed
 import imagePlaceholder from '../assets/images/imagePlaceholder.svg';
 import moment from 'moment';
 export function convertMinutesToHoursAndMinutes(minutes: number): string {

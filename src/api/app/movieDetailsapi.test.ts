@@ -6,7 +6,6 @@ import {
 
 import { MovieDetailsApi } from './movieDetails.api';
 
-// Mocking axios and StorageService
 jest.mock('axios');
 
 describe('MovieDetailsApi', () => {

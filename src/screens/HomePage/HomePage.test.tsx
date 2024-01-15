@@ -7,6 +7,13 @@ import { createBrowserHistory } from 'history';
 import { MoviesApi } from '../../api/app/movies.api';
 import { ListMovies } from '../../api/interfaces/IMovies';
 
+jest.mock('../../api/app/movies.api', () => ({
+  MoviesApi: {
+    getMovies: jest.fn(),
+    searchMovies: jest.fn(),
+  },
+}));
+
 describe('HomePage component', () => {
   const moviesListMock: ListMovies = {
     page: 0,
@@ -15,13 +22,11 @@ describe('HomePage component', () => {
     results: [],
   };
 
-  beforeAll(() => {
-    jest.spyOn(MoviesApi, 'getMovies').mockResolvedValueOnce(moviesListMock);
-  });
-
   const history = createBrowserHistory();
   history.push = jest.fn();
   test('renders correctly', async () => {
+    jest.spyOn(MoviesApi, 'getMovies').mockResolvedValueOnce(moviesListMock);
+
     const { getByTestId } = render(
       <Router location={history.location} navigator={history}>
         <HomePage />
@@ -33,7 +38,9 @@ describe('HomePage component', () => {
     });
   });
 
-  test('updates search state on input change', () => {
+  test('updates search state on input change', async () => {
+    jest.spyOn(MoviesApi, 'getMovies').mockResolvedValueOnce(moviesListMock);
+
     const { getByPlaceholderText } = render(
       <Router location={history.location} navigator={history}>
         <HomePage />
@@ -44,7 +51,8 @@ describe('HomePage component', () => {
     act(() => {
       fireEvent.change(searchInput, { target: { value: 'Avengers' } });
     });
-
-    expect((searchInput as any).value).toBe('Avengers');
+    await waitFor(() => {
+      expect((searchInput as any).value).toBe('Avengers');
+    });
   });
 });

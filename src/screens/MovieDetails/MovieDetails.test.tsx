@@ -24,17 +24,6 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
-jest.mock('../../utils/utilFunctions', () => ({
-  getFullImageUrl: jest.fn(),
-  formatDate: jest.fn(),
-  convertMinutesToHoursAndMinutes: jest.fn(),
-}));
-
-jest.mock('../../components/RoundedProgressBar', () => ({
-  __esModule: true,
-  default: jest.fn(() => null),
-}));
-
 jest.mock('../../components/CastSlider', () => ({
   __esModule: true,
   default: jest.fn(() => null),

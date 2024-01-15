@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 export enum HTTP_HEADER_TYPE {
   JSON,
@@ -25,38 +25,22 @@ abstract class BaseApi {
     });
   }
 
-  protected async makeRequest<T>(
+  public async makeRequest<T>(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
     url: string,
     headers?: IHttpHeaders,
     data?: Record<string, any>,
     config?: AxiosRequestConfig
   ): Promise<T> {
-    try {
-      const response = await this.axios.request<T>({
-        headers,
-        method,
-        url,
-        data,
-        ...config,
-      });
+    const response = await this.axios.request<T>({
+      headers,
+      method,
+      url,
+      data,
+      ...config,
+    });
 
-      return response.data;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        console.error(error.response?.data);
-
-        this.__handleRequestErrors(error);
-      } else {
-        console.error(error);
-      }
-
-      throw error;
-    }
-  }
-
-  protected async __handleRequestErrors(error: any): Promise<void> {
-    console.error('error: ', error);
+    return response.data;
   }
 }
 

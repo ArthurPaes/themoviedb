@@ -2,7 +2,6 @@ import api from '../api.base';
 import { IMovies, ListMovies } from '../interfaces/IMovies';
 import { MoviesApi } from './movies.api';
 
-// Mocking axios and StorageService
 jest.mock('axios');
 
 describe('MoviesApi', () => {
