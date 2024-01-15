@@ -16,7 +16,7 @@ export function convertMinutesToHoursAndMinutes(minutes: number): string {
   return hoursText + minutesText;
 }
 
-export function getFullImageUrl(imagePath: string): string {
+export function getFullImageUrl(imagePath: string | undefined): string {
   const fullImageUrl = imagePath
     ? process.env.REACT_APP_IMAGE_URL + imagePath
     : imagePlaceholder;
