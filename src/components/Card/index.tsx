@@ -16,7 +16,6 @@ const Card: React.FC<ICardProps> = ({
       'rounded-[8px]',
       'border-[1px]',
       'border-[#e3e3e3]',
-      'cursor-pointer',
     ],
     {
       variants: {
@@ -34,6 +33,7 @@ const Card: React.FC<ICardProps> = ({
   return (
     <>
       <div
+        data-testid="card-element"
         onClick={() => {
           onClick && onClick();
         }}
@@ -42,9 +42,18 @@ const Card: React.FC<ICardProps> = ({
           className="rounded-t-[8px] h-[70%] w-full object-cover"
           src={imgUrl}
           alt=""
+          loading="lazy"
         />
-
-        <div className="px-[10px] py-[20px] text-[14px]">{children}</div>
+        <div
+          style={{
+            overflow: 'hidden',
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+          }}
+          className="w-full h-[28%] px-[10px] py-[20px] text-[14px]">
+          {children}
+        </div>
       </div>
     </>
   );
