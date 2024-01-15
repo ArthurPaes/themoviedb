@@ -6,7 +6,7 @@ export enum HTTP_HEADER_TYPE {
   FORM_DATA,
 }
 
-interface IHttpHeaders {
+export interface IHttpHeaders {
   'Content-Type': string;
   Authorization?: string;
   Accept?: string;
