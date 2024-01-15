@@ -3,6 +3,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This project was made using node version 20.3.1
+
+# Visit the website
+https://themoviedb-pilar.vercel.app
+This project was deployed using <a href="https://vercel.com/">Vercel</a> <br/>
+
 # Routes
 
 #### path="/" => Home page
