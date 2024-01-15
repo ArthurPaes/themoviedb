@@ -95,7 +95,8 @@ const HomePage: React.FC = () => {
         </div>
         <div
           data-testid="home-page"
-          className={`flex flex-col justify-center text-white bg-cover text-[3em] px-[40px] py-[40px] h-[360px]`}>
+          className={`flex flex-col justify-center text-white bg-cover text-[3em] px-[40px] py-[40px]
+            h-[360px]`}>
           <span className="font-bold">Bem-Vindo(a)</span>
           <span className="text-[30px] mb-10">
             Milhões de Filmes, Séries e Pessoas para Descobrir. Explore já.
