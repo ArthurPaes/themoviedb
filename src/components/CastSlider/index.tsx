@@ -4,9 +4,11 @@ import { getFullImageUrl } from '../../utils/utilFunctions';
 
 const CastSlider: React.FC<ICastSliderProps> = ({ movieCast }) => {
   return (
-    <div>
-      {!movieCast ? (
-        <div>Não temos uma lista do elenco deste filme</div>
+    <div data-testid="test">
+      {!movieCast?.length ? (
+        <div data-testid="not-found">
+          Não temos uma lista do elenco deste filme
+        </div>
       ) : (
         <div
           className="flex flex-row gap-x-[40px] w-[1300px] h-[300px] mt-[15px] overflow-x-scroll
