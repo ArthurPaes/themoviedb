@@ -51,7 +51,8 @@ const RoundedProgressBar: React.FC<IRoundedProgresBarProps> = ({
 
   return (
     <div
-      className={`flex justify-center items-center rounded-full border-2 border-black transition-transform transform hover:scale-125 ${sizeVariants[size]}`}
+      className={`flex justify-center items-center rounded-full border-2 border-black
+        transition-transform transform hover:scale-125 ${sizeVariants[size]}`}
       style={{
         background: `
       radial-gradient(closest-side, black 85%, transparent 86% 100%),
