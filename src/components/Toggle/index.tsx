@@ -50,12 +50,12 @@ const Toggle: React.FC<IToggleProps> = ({ options, onChange, selected }) => {
   };
 
   return (
-    <div className={'relative flex rounded-full border border-dark-blue w-fit'}>
+    <div className={'flex relative rounded-full border border-dark-blue w-fit'}>
       {options.map(option => (
         <button
           id={`toggle-${option.value}`}
           key={option.value}
-          className="px-4 h-7 text-sm font-bold rounded-full z-10"
+          className="z-10 px-4 h-7 text-sm font-bold rounded-full"
           onClick={() => change(option.value)}>
           <span
             style={{
@@ -72,7 +72,7 @@ const Toggle: React.FC<IToggleProps> = ({ options, onChange, selected }) => {
       ))}
 
       <div
-        className="transition-left duration-300 ease-in-out absolute h-7 bg-dark-blue rounded-full"
+        className="absolute h-7 rounded-full duration-300 ease-in-out transition-left bg-dark-blue"
         style={{ width: selectedButtonWidth, left: selectedButtonLeft }}
       />
     </div>
