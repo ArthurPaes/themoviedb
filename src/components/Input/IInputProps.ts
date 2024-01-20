@@ -1,8 +1,8 @@
-import { IButtonProps } from '../Button/IButtonProps';
+import { IPButtonProps } from '../Button/IPButtonProps';
 
-type ButtonProps = Pick<IButtonProps, 'label' | 'onClick'>;
+type ButtonProps = Pick<IPButtonProps, 'label' | 'onClick'>;
 
-export interface IInputProps {
+export interface IPInputProps {
   value: string;
   placeholder: string;
   button?: ButtonProps;

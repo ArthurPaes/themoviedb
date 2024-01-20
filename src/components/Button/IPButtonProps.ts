@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-export interface IButtonProps {
+export interface IPButtonProps {
   onClick: () => void;
   label: string;
   className?: string;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { IButtonProps } from './IButtonProps';
+import { IPButtonProps } from './IPButtonProps';
 import { cva } from 'class-variance-authority';
 
-const Button: React.FC<IButtonProps> = ({
+const PButton: React.FC<IPButtonProps> = ({
   onClick,
   label,
   className,
@@ -87,4 +87,4 @@ const Button: React.FC<IButtonProps> = ({
   );
 };
 
-export default Button;
+export default PButton;

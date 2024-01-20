@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useRef } from 'react';
-import { IInputProps } from './IInputProps';
+import { IPInputProps } from './IInputProps';
 import Button from '../Button';
 
-const Input: React.FC<IInputProps> = ({
+const PInput: React.FC<IPInputProps> = ({
   value,
   placeholder,
   onChange,
@@ -53,4 +53,4 @@ const Input: React.FC<IInputProps> = ({
   );
 };
 
-export default Input;
+export default PInput;

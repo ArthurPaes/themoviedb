@@ -5,8 +5,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This project was made using node version 20.3.1
 
 # Visit the website
-https://themoviedb-pilar.vercel.app
 
+https://themoviedb-pilar.vercel.app
 
 This project was deployed using <a href="https://vercel.com/">Vercel</a> <br/>
 
@@ -25,7 +25,6 @@ This project was deployed using <a href="https://vercel.com/">Vercel</a> <br/>
 <a href="https://jestjs.io/pt-BR/">Jest</a> <br/>
 <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a> <br/>
 <a href="https://axios-http.com/ptbr/docs/intro">Axios</a> <br/>
-
 
 ## Installation
 
