@@ -8,6 +8,8 @@ https://themoviedb-pilar.vercel.app
 
 This project was deployed using <a href="https://vercel.com/">Vercel</a> <br/>
 
+Api used: <a href="https://developer.themoviedb.org/reference/intro/getting-started">TMDB</a> <br/>
+
 # Routes
 
 #### path="/" => Home page
